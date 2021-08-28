@@ -1,29 +1,12 @@
 <script>
 	import { trad as t } from './store';
-	import ForceGraph3D from '3d-force-graph';
-	import { onMount } from 'svelte';
+	import Graph3D from './components/Graph3D.svelte';
 	export let name;
-	let graphDiv = undefined;
-
-	// Random tree
-	const N = 300;
-	const gData = {
-		nodes: [...Array(N).keys()].map((i) => ({ id: i })),
-		links: [...Array(N).keys()]
-			.filter((id) => id)
-			.map((id) => ({
-				source: id,
-				target: Math.round(Math.random() * (id - 1)),
-			})),
-	};
-	onMount(() => {
-		const Graph = ForceGraph3D()(graphDiv).graphData(gData);
-	});
 </script>
 
 <main>
 	<h1>{$t['hello']} {name}!</h1>
-	<div id="3d-graph" bind:this={graphDiv} />
+	<Graph3D />
 </main>
 
 <style>
